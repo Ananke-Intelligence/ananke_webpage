@@ -22,7 +22,7 @@
   <meta name="twitter:image" content="https://anankeintelligence.com/pictures/ananke_logo_transparent_upscaled.png" />
 
   <link rel="icon" type="image/png" href="pictures/logo_without_anankeintelligence.jpg" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
@@ -142,9 +142,9 @@
 
   <script>
     // ── Paste your EmailJS credentials here ──
-    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
-    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+    const EMAILJS_PUBLIC_KEY  = '1Oo8Ut9wVYifD5aum';
+    const EMAILJS_SERVICE_ID  = 'service_bg3ar5q';
+    const EMAILJS_TEMPLATE_ID = 'template_uzrx21b';
     // ─────────────────────────────────────────
 
     // Navbar
@@ -192,13 +192,12 @@
       const templateParams = {
         first_name:  document.getElementById('first_name').value.trim(),
         last_name:   document.getElementById('last_name').value.trim(),
-        from_email:  document.getElementById('email').value.trim(),
+        email:       document.getElementById('email').value.trim(),
         phone:       document.getElementById('phone').value.trim() || 'Not provided',
         company:     document.getElementById('company').value.trim() || 'Not provided',
         position:    document.getElementById('position').value.trim() || 'Not provided',
         budget:      budgets,
         description: document.getElementById('description').value.trim() || 'Not provided',
-        reply_to:    document.getElementById('email').value.trim(),
       };
 
       try {

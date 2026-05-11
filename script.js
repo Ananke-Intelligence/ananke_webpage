@@ -34,7 +34,7 @@ window.addEventListener('scroll', () => {
 //  SCROLL FADE-IN ANIMATIONS
 // ═══════════════════════════════════════════
 const fadeElements = document.querySelectorAll(
-  '.feature-card, .process-step, .client-list li, .section-title, .quote-text, .mission-text'
+  '.feature-card, .process-step, .client-list li, .section-title, .quote-text, .mission-text, .vm-card'
 );
 
 fadeElements.forEach(el => el.classList.add('fade-in'));
@@ -51,3 +51,45 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 fadeElements.forEach(el => observer.observe(el));
+
+// ═══════════════════════════════════════════
+//  INEVITABLE — GOLDEN LETTER WAVE ON HOVER
+// ═══════════════════════════════════════════
+const tagline = document.querySelector('.italic-line');
+if (tagline) {
+  const childNodes = [...tagline.childNodes];
+  tagline.innerHTML = '';
+
+  childNodes.forEach(node => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      [...node.textContent].forEach(ch => {
+        if (ch === ' ') {
+          tagline.appendChild(document.createTextNode(' '));
+        } else {
+          const s = document.createElement('span');
+          s.className = 'char';
+          s.textContent = ch;
+          tagline.appendChild(s);
+        }
+      });
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      [...node.textContent].forEach(ch => {
+        const s = document.createElement('span');
+        s.className = 'char ' + node.className;
+        s.textContent = ch;
+        tagline.appendChild(s);
+      });
+    }
+  });
+
+  const chars = tagline.querySelectorAll('.char');
+
+  tagline.addEventListener('mouseenter', () => {
+    chars.forEach((ch, i) => {
+      ch.classList.remove('flare');
+      void ch.offsetWidth;
+      ch.style.animationDelay = `${i * 0.045}s`;
+      ch.classList.add('flare');
+    });
+  });
+}
