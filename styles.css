@@ -898,7 +898,7 @@ a {
 .contact-page-header h1 {
   font-family: var(--font-head);
   font-size: clamp(2.4rem, 5vw, 3.6rem);
-  font-weight: 900;
+  font-weight: 400;
   color: var(--white);
   margin-bottom: 10px;
 }
