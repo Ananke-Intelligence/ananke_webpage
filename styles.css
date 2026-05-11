@@ -754,6 +754,11 @@ a {
   color: var(--gray);
 }
 
+.italic-line .char.inev-letter {
+  color: var(--gold-lt);
+  font-size: 1.15em;
+}
+
 @keyframes char-flare {
   0%   { color: var(--gray);  transform: translateY(0)   scale(1);    text-shadow: none; }
   35%  { color: #f0c060;      transform: translateY(-4px) scale(1.15); text-shadow: 0 0 12px rgba(240,192,96,0.95), 0 0 28px rgba(201,144,42,0.6); }
