@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research — Ananke Intelligence</title>
+  <meta name="description" content="Research and insights from Ananke Intelligence on structured AI training data, didactic design, and mathematical reasoning for machine learning." />
+  <meta name="keywords" content="AI research, training data research, mathematical reasoning, didactic design, AI alignment, structured learning" />
+  <link rel="canonical" href="https://anankeintelligence.com/research.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://anankeintelligence.com/research.html" />
+  <meta property="og:title" content="Research — Ananke Intelligence" />
+  <meta property="og:description" content="Research and insights from Ananke Intelligence on structured AI training data, didactic design, and mathematical reasoning for machine learning." />
+  <meta property="og:image" content="https://anankeintelligence.com/pictures/ananke_logo_transparent_upscaled.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Research — Ananke Intelligence" />
+  <meta name="twitter:description" content="Research and insights from Ananke Intelligence on structured AI training data, didactic design, and mathematical reasoning for machine learning." />
+  <meta name="twitter:image" content="https://anankeintelligence.com/pictures/ananke_logo_transparent_upscaled.png" />
+
+  <link rel="icon" type="image/png" href="pictures/logo_without_anankeintelligence.jpg" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <a href="index.html" class="nav-wordmark">
+        <span class="nav-wordmark-top">ANANKE</span>
+        <span class="nav-wordmark-sub">INTELLIGENCE</span>
+      </a>
+    </div>
+    <a href="contact.html" class="btn-early-access">Request Early Access</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="contact.html" class="btn-nav-join">Join the Mission</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#about" onclick="closeMobileMenu()">About</a>
+    <a href="research.html" onclick="closeMobileMenu()">Research</a>
+    <a href="contact.html" onclick="closeMobileMenu()">Join the Mission</a>
+    <a href="contact.html" onclick="closeMobileMenu()" class="btn-mobile-access">Request Early Access</a>
+  </div>
+
+  <!-- RESEARCH CONTENT -->
+  <div class="page-hero">
+    <div class="page-breadcrumb">All Posts</div>
+
+    <div class="research-content">
+      <h1>All Posts</h1>
+
+      <div class="research-empty">
+        <h2>Check back soon</h2>
+        <p>Once posts are published, you'll see them here.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-wordmark">ANANKE INTELLIGENCE</div>
+    <div class="footer-divider"></div>
+    <div class="footer-nav">
+      <a href="index.html#about">About</a>
+      <a href="research.html">Research</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.linkedin.com/company/ananke-intelligence" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Ananke Intelligence</span>
+      <span>Ontario, CA</span>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.style.borderBottomColor = window.scrollY > 50
+        ? 'rgba(139, 112, 53, 0.6)'
+        : 'rgba(139, 112, 53, 0.4)';
+    });
+  </script>
+</body>
+</html>

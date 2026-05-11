@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build With Us — Ananke Intelligence</title>
+  <meta name="description" content="Partner with Ananke Intelligence to build structured AI training data for your models. Book a discovery call or request early access today." />
+  <meta name="keywords" content="AI training data, contact Ananke, structured data partnership, AI data provider, fine-tuning data, request early access" />
+  <link rel="canonical" href="https://anankeintelligence.com/contact.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://anankeintelligence.com/contact.html" />
+  <meta property="og:title" content="Build With Us — Ananke Intelligence" />
+  <meta property="og:description" content="Partner with Ananke Intelligence to build structured AI training data for your models. Book a discovery call or request early access today." />
+  <meta property="og:image" content="https://anankeintelligence.com/pictures/ananke_logo_transparent_upscaled.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Build With Us — Ananke Intelligence" />
+  <meta name="twitter:description" content="Partner with Ananke Intelligence to build structured AI training data for your models. Book a discovery call or request early access today." />
+  <meta name="twitter:image" content="https://anankeintelligence.com/pictures/ananke_logo_transparent_upscaled.png" />
+
+  <link rel="icon" type="image/png" href="pictures/logo_without_anankeintelligence.jpg" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <a href="index.html" class="nav-wordmark">
+        <span class="nav-wordmark-top">ANANKE</span>
+        <span class="nav-wordmark-sub">INTELLIGENCE</span>
+      </a>
+    </div>
+    <a href="contact.html" class="btn-early-access">Request Early Access</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="contact.html" class="btn-nav-join">Join the Mission</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#about" onclick="closeMobileMenu()">About</a>
+    <a href="research.html" onclick="closeMobileMenu()">Research</a>
+    <a href="contact.html" onclick="closeMobileMenu()">Join the Mission</a>
+    <a href="contact.html" onclick="closeMobileMenu()" class="btn-mobile-access">Request Early Access</a>
+  </div>
+
+  <!-- CONTACT PAGE -->
+  <div class="contact-page">
+
+    <div class="contact-page-header">
+      <h1>Build With Us</h1>
+      <p class="sub1">The Invisible becomes Inevitable.</p>
+      <p class="sub2">Let's build the foundations your models have been waiting for.</p>
+    </div>
+
+    <div class="contact-page-form-wrap">
+      <form id="contactForm" class="contact-page-form">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first_name">First name <span class="req">*</span></label>
+            <input type="text" id="first_name" name="first_name" required />
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last name <span class="req">*</span></label>
+            <input type="text" id="last_name" name="last_name" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="(   ) ___-____" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company name</label>
+          <input type="text" id="company" name="company" />
+        </div>
+
+        <div class="form-group">
+          <label for="position">Position</label>
+          <input type="text" id="position" name="position" />
+        </div>
+
+        <div class="form-group">
+          <span class="budget-label">Project Budget</span>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="budget" value="<$10k" /> &lt;$10k</label>
+            <label><input type="checkbox" name="budget" value="$10-25k" /> $10-25k</label>
+            <label><input type="checkbox" name="budget" value="$25k-1M" /> $25k-1M</label>
+            <label><input type="checkbox" name="budget" value="$1M+" /> $1M+</label>
+            <label><input type="checkbox" name="budget" value="Other" /> Other</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Please describe your project in detail (data type, volume, timeline, budget, etc)</label>
+          <textarea id="description" name="description" rows="4"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit</button>
+        <div id="formStatus" class="form-status"></div>
+
+      </form>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-wordmark">ANANKE INTELLIGENCE</div>
+    <div class="footer-divider"></div>
+    <div class="footer-nav">
+      <a href="index.html#about">About</a>
+      <a href="research.html">Research</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://www.linkedin.com/company/ananke-intelligence" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Ananke Intelligence</span>
+      <span>Ontario, CA</span>
+    </div>
+  </footer>
+
+  <script>
+    // ── Paste your EmailJS credentials here ──
+    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+    // ─────────────────────────────────────────
+
+    // Navbar
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.style.borderBottomColor = window.scrollY > 50
+        ? 'rgba(139, 112, 53, 0.6)'
+        : 'rgba(139, 112, 53, 0.4)';
+    });
+
+    // Load EmailJS
+    (function loadEmailJS() {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      script.onload = () => emailjs.init(EMAILJS_PUBLIC_KEY);
+      document.head.appendChild(script);
+    })();
+
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    const formStatus  = document.getElementById('formStatus');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      formStatus.className = 'form-status';
+      formStatus.textContent = '';
+
+      // Collect checked budgets
+      const budgets = [...document.querySelectorAll('input[name="budget"]:checked')]
+        .map(cb => cb.value).join(', ') || 'Not specified';
+
+      const templateParams = {
+        first_name:  document.getElementById('first_name').value.trim(),
+        last_name:   document.getElementById('last_name').value.trim(),
+        from_email:  document.getElementById('email').value.trim(),
+        phone:       document.getElementById('phone').value.trim() || 'Not provided',
+        company:     document.getElementById('company').value.trim() || 'Not provided',
+        position:    document.getElementById('position').value.trim() || 'Not provided',
+        budget:      budgets,
+        description: document.getElementById('description').value.trim() || 'Not provided',
+        reply_to:    document.getElementById('email').value.trim(),
+      };
+
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+        formStatus.className = 'form-status success';
+        formStatus.textContent = 'Message sent. We will be in touch shortly.';
+        contactForm.reset();
+      } catch (err) {
+        console.error('EmailJS error:', err);
+        formStatus.className = 'form-status error';
+        formStatus.textContent = 'Something went wrong. Please email us at anankehq@anankeintelligence.com';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
+      }
+    });
+  </script>
+</body>
+</html>
