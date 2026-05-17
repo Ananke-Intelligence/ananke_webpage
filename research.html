@@ -60,19 +60,27 @@
     <a href="contact.html" onclick="closeMobileMenu()" class="btn-mobile-access">Request Early Access</a>
   </div>
 
-  <!-- RESEARCH CONTENT -->
-  <div class="page-hero">
-    <div class="page-breadcrumb">All Posts</div>
-
-    <div class="research-content">
-      <h1>All Posts</h1>
-
-      <div class="research-empty">
-        <h2>Check back soon</h2>
-        <p>Once posts are published, you'll see them here.</p>
-      </div>
+  <!-- HERO -->
+  <header class="vp-hero">
+    <div class="vp-hero-inner">
+      <span class="vp-overline">Insights &amp; Publications</span>
+      <h1 class="vp-hero-title">Research</h1>
+      <div class="vp-hero-rule"></div>
+      <p class="vp-hero-tagline">Rigorous thinking on the structure of intelligence,<br />cognitive data, and the future of AI.</p>
     </div>
-  </div>
+    <div class="vp-hero-fade"></div>
+  </header>
+
+  <!-- COMING SOON -->
+  <section class="research-soon">
+    <div class="research-soon-inner">
+      <span class="vp-overline">Coming Soon</span>
+      <h2 class="research-soon-title">Publications &amp; Insights</h2>
+      <div class="research-soon-rule"></div>
+      <p class="research-soon-body">Our first research publications are in preparation. Check back soon for papers, essays, and technical insights on cognitively structured AI training data, mathematical reasoning, and the foundations of conceptual intelligence.</p>
+      <a href="contact.html" class="btn-gold">Stay Informed</a>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer id="footer">
@@ -92,22 +100,6 @@
     </div>
   </footer>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-    function closeMobileMenu() { mobileMenu.classList.remove('open'); }
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-        mobileMenu.classList.remove('open');
-      }
-    });
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.style.borderBottomColor = window.scrollY > 50
-        ? 'rgba(139, 112, 53, 0.6)'
-        : 'rgba(139, 112, 53, 0.4)';
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

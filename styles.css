@@ -1317,6 +1317,46 @@ a {
   }
 }
 
+/* — Research Coming Soon — */
+.research-soon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52vh;
+  padding: 80px 40px;
+}
+
+.research-soon-inner {
+  max-width: 620px;
+  text-align: center;
+}
+
+.research-soon-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  margin: 14px 0 28px;
+}
+
+.research-soon-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+  margin: 0 auto 32px;
+}
+
+.research-soon-body {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--gray);
+  line-height: 1.85;
+  margin-bottom: 40px;
+}
+
 /* — Project Page Elements — */
 .proj-status {
   display: block;
