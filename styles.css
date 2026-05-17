@@ -1385,8 +1385,15 @@ a {
 .proj-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: 48px;
   margin-top: 32px;
+}
+
+.proj-links-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(201, 144, 42, 0.35);
+  align-self: center;
 }
 
 .proj-ext-link {
