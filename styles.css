@@ -1317,6 +1317,85 @@ a {
   }
 }
 
+/* — Project Page Elements — */
+.proj-status {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.75;
+  margin-bottom: 14px;
+}
+
+.proj-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  border: 1px solid rgba(201, 144, 42, 0.4);
+  display: inline-block;
+  padding: 5px 14px;
+  margin-bottom: 18px;
+}
+
+.proj-ext-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 144, 42, 0.35);
+  padding-bottom: 4px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.proj-ext-link:hover {
+  color: var(--gold-lt);
+  border-color: var(--gold-lt);
+}
+
+.proj-ext-arrow {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.proj-access-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 32px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+  border: 1px solid rgba(201, 144, 42, 0.2);
+  padding: 8px 18px;
+}
+
+.proj-access-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  animation: proj-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes proj-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
 /* — Closing CTA — */
 .vp-cta {
   background: var(--bg);
