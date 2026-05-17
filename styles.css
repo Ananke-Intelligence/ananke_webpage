@@ -1382,11 +1382,17 @@ a {
   margin-bottom: 18px;
 }
 
+.proj-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 32px;
+}
+
 .proj-ext-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 32px;
   font-family: 'Cinzel', serif;
   font-size: 0.75rem;
   font-weight: 600;
