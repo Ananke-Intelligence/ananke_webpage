@@ -3,6 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Security: restricts where scripts/styles may load from and where data may be sent.
+       GitHub Pages cannot set real HTTP headers, so this is delivered as a meta tag. -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data:;
+    connect-src 'self';
+    frame-src 'none';
+    form-action 'none';
+    base-uri 'self';
+    object-src 'none';
+    upgrade-insecure-requests;" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Projects — Ananke Intelligence</title>
   <meta name="description" content="Active research initiatives at Ananke Intelligence — AMI strategic alignment and Project Strata, a cognitively structured mathematical data infrastructure for AI research." />
   <link rel="canonical" href="https://anankeintelligence.com/projects.html" />

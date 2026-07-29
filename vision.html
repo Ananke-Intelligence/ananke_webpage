@@ -3,6 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Security: restricts where scripts/styles may load from and where data may be sent.
+       GitHub Pages cannot set real HTTP headers, so this is delivered as a meta tag. -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data:;
+    connect-src 'self';
+    frame-src 'none';
+    form-action 'none';
+    base-uri 'self';
+    object-src 'none';
+    upgrade-insecure-requests;" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Vision &amp; Mission — Ananke Intelligence</title>
   <meta name="description" content="Our vision is to pioneer cognitively grounded AI training data. Our mission is to advance AI within an ethical, human-centered framework." />
   <link rel="canonical" href="https://anankeintelligence.com/vision.html" />

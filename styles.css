@@ -1047,6 +1047,24 @@ a {
 .contact-page-form .form-status.success { color: #7fbf7f; }
 .contact-page-form .form-status.error   { color: #cf6679; }
 
+/* Honeypot — moved off-screen rather than display:none, since some bots skip
+   hidden fields. Invisible to people, still present in the DOM for bots to fill. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* reCAPTCHA widget — only occupies space once a site key is configured. */
+.recaptcha-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 8px;
+}
+.recaptcha-wrap:empty { margin: 0; }
+
 /* ═══════════════════════════════════════════
    VISION PAGE
 ═══════════════════════════════════════════ */

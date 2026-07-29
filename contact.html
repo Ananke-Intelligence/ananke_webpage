@@ -3,6 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security: restricts where scripts/styles may load from and where data may be sent.
+       GitHub Pages cannot set real HTTP headers, so this is delivered as a meta tag.
+       Note: frame-ancestors is ignored in meta form — see security notes. -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data:;
+    connect-src 'self' https://api.emailjs.com;
+    frame-src https://www.google.com;
+    form-action 'none';
+    base-uri 'self';
+    object-src 'none';
+    upgrade-insecure-requests;" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
   <title>Build With Us — Ananke Intelligence</title>
   <meta name="description" content="Partner with Ananke Intelligence to build structured AI training data for your models. Book a discovery call or request early access today." />
   <meta name="keywords" content="AI training data, contact Ananke, structured data partnership, AI data provider, fine-tuning data, request early access" />
@@ -70,38 +88,45 @@
     </div>
 
     <div class="contact-page-form-wrap">
-      <form id="contactForm" class="contact-page-form">
+      <form id="contactForm" class="contact-page-form" novalidate="false">
+
+        <!-- Honeypot: invisible to people, tempting to bots. If it gets filled, we drop
+             the submission silently. Not a real security control on its own — see notes. -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="website_url">Leave this field empty</label>
+          <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off" />
+        </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="first_name">First name <span class="req">*</span></label>
-            <input type="text" id="first_name" name="first_name" required />
+            <input type="text" id="first_name" name="first_name" maxlength="80" required />
           </div>
           <div class="form-group">
             <label for="last_name">Last name <span class="req">*</span></label>
-            <input type="text" id="last_name" name="last_name" required />
+            <input type="text" id="last_name" name="last_name" maxlength="80" required />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="email">Email <span class="req">*</span></label>
-            <input type="email" id="email" name="email" required />
+            <input type="email" id="email" name="email" maxlength="254" required />
           </div>
           <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="(   ) ___-____" />
+            <input type="tel" id="phone" name="phone" maxlength="30" placeholder="(   ) ___-____" />
           </div>
         </div>
 
         <div class="form-group">
           <label for="company">Company name</label>
-          <input type="text" id="company" name="company" />
+          <input type="text" id="company" name="company" maxlength="120" />
         </div>
 
         <div class="form-group">
           <label for="position">Position</label>
-          <input type="text" id="position" name="position" />
+          <input type="text" id="position" name="position" maxlength="120" />
         </div>
 
         <div class="form-group">
@@ -117,8 +142,11 @@
 
         <div class="form-group">
           <label for="description">Please describe your project in detail (data type, volume, timeline, budget, etc)</label>
-          <textarea id="description" name="description" rows="4"></textarea>
+          <textarea id="description" name="description" rows="4" maxlength="5000"></textarea>
         </div>
+
+        <!-- reCAPTCHA widget renders here once RECAPTCHA_SITE_KEY is set below. -->
+        <div id="recaptchaContainer" class="recaptcha-wrap"></div>
 
         <button type="submit" class="btn-submit">Submit</button>
         <div id="formStatus" class="form-status"></div>
@@ -147,10 +175,18 @@
   </footer>
 
   <script>
-    // ── Paste your EmailJS credentials here ──
+    // ── EmailJS credentials (public key is safe to expose; the SECRET key must
+    //    never leave the EmailJS dashboard) ──
     const EMAILJS_PUBLIC_KEY  = '1Oo8Ut9wVYifD5aum';
     const EMAILJS_SERVICE_ID  = 'service_bg3ar5q';
     const EMAILJS_TEMPLATE_ID = 'template_uzrx21b';
+
+    // ── reCAPTCHA v2 (free). Leave EMPTY to keep the form working without a captcha.
+    //    Paste the *site key* from https://www.google.com/recaptcha/admin here, put the
+    //    matching *secret key* in the EmailJS template settings, and the widget turns on.
+    //    ORDER MATTERS: deploy this key FIRST, then enable reCAPTCHA in EmailJS —
+    //    doing it the other way round rejects every submission in between. ──
+    const RECAPTCHA_SITE_KEY = '6LccsWotAAAAAGBN3qcjxQHHucEOA-mmMbH5wmMB';
     // ─────────────────────────────────────────
 
     // Navbar
@@ -170,13 +206,39 @@
         : 'rgba(139, 112, 53, 0.4)';
     });
 
-    // Load EmailJS
+    // Load EmailJS — pinned to an exact version and checked against a Subresource
+    // Integrity hash, so a tampered or swapped CDN file is refused by the browser.
+    // If you bump the version, you MUST regenerate this hash or the form stops loading:
+    //   curl -s https://cdn.jsdelivr.net/npm/@emailjs/browser@<ver>/dist/email.min.js \
+    //     | openssl dgst -sha384 -binary | openssl base64 -A
     (function loadEmailJS() {
       const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js';
+      script.integrity = 'sha384-SALc35EccAf6RzGw4iNsyj7kTPr33K7RoGzYu+7heZhT8s0GZouafRiCg1qy44AS';
+      script.crossOrigin = 'anonymous';
       script.onload = () => emailjs.init(EMAILJS_PUBLIC_KEY);
       document.head.appendChild(script);
     })();
+
+    // Load reCAPTCHA only if a site key has been configured.
+    let recaptchaWidgetId = null;
+    if (RECAPTCHA_SITE_KEY) {
+      window.onRecaptchaLoad = function () {
+        recaptchaWidgetId = grecaptcha.render('recaptchaContainer', {
+          sitekey: RECAPTCHA_SITE_KEY,
+          theme: 'dark',
+        });
+      };
+      const rc = document.createElement('script');
+      rc.src = 'https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit';
+      rc.async = true;
+      rc.defer = true;
+      document.head.appendChild(rc);
+    }
+
+    // Bot heuristics: real people take a few seconds to fill this in.
+    const formLoadedAt = Date.now();
+    const MIN_FILL_MS  = 3000;
 
     // Form submission
     const contactForm = document.getElementById('contactForm');
@@ -185,7 +247,29 @@
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
+      // Honeypot tripped, or submitted implausibly fast — almost certainly a bot.
+      // Show the normal success message so the bot has nothing to learn from.
+      if (document.getElementById('website_url').value !== '' ||
+          Date.now() - formLoadedAt < MIN_FILL_MS) {
+        formStatus.className = 'form-status success';
+        formStatus.textContent = 'Message sent. We will be in touch shortly.';
+        contactForm.reset();
+        return;
+      }
+
       const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+      // Require a solved captcha when reCAPTCHA is switched on.
+      let captchaToken = '';
+      if (RECAPTCHA_SITE_KEY && recaptchaWidgetId !== null) {
+        captchaToken = grecaptcha.getResponse(recaptchaWidgetId);
+        if (!captchaToken) {
+          formStatus.className = 'form-status error';
+          formStatus.textContent = 'Please complete the verification below before submitting.';
+          return;
+        }
+      }
+
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
       formStatus.className = 'form-status';
@@ -206,6 +290,10 @@
         description: document.getElementById('description').value.trim() || 'Not provided',
       };
 
+      // EmailJS verifies this token server-side against the secret key stored in
+      // the template settings — that check is what actually stops abuse.
+      if (captchaToken) templateParams['g-recaptcha-response'] = captchaToken;
+
       try {
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
         formStatus.className = 'form-status success';
@@ -218,6 +306,8 @@
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit';
+        // A captcha token is single-use — clear it so the next send gets a fresh one.
+        if (RECAPTCHA_SITE_KEY && recaptchaWidgetId !== null) grecaptcha.reset(recaptchaWidgetId);
       }
     });
   </script>
