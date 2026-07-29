@@ -240,6 +240,26 @@ a {
   display: none !important;
 }
 
+/* Nav items must never wrap. The navbar grid is 1fr auto 1fr, which forces
+   the links column to match the logo column, so it runs out of room long
+   before the page does — and wrapping breaks the bordered buttons apart. */
+.nav-links a {
+  white-space: nowrap;
+}
+
+/* Log In — deliberately the quietest link on the page. The platform is
+   invite-only, so this is a door for the handful of people who already have
+   a key, not a call to action. Styling it like the gold CTAs would invite
+   visitors to click something they cannot get into. */
+.footer-login {
+  color: var(--gray) !important;
+  opacity: .75;
+}
+.footer-login:hover {
+  color: var(--gold) !important;
+  opacity: 1;
+}
+
 /* Hamburger */
 .hamburger {
   display: none;
@@ -288,6 +308,17 @@ a {
   padding: 10px 0 !important;
   color: var(--gold) !important;
   border-bottom: none !important;
+}
+.btn-mobile-login {
+  color: var(--gray) !important;
+  font-size: 0.82rem !important;
+  border-bottom: none !important;
+  border-top: 1px solid var(--border) !important;
+  padding-top: 14px !important;
+  margin-top: 4px;
+}
+.btn-mobile-login:hover {
+  color: var(--gold) !important;
 }
 
 /* ═══════════════════════════════════════════
