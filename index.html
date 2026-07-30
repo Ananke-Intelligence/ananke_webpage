@@ -55,7 +55,18 @@
   </script>
 
   <link rel="icon" type="image/png" href="pictures/logo_without_anankeintelligence.jpg" />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <script>
+    /* Applied before the first paint so a returning visitor never sees a
+       flash of the other theme. No stored choice means no attribute, which
+       leaves prefers-color-scheme in the stylesheet in charge. */
+    (function () {
+      try {
+        var t = localStorage.getItem('ananke-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css?v=10" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
@@ -73,16 +84,27 @@
       </a>
     </div>
     <a href="contact.html" class="btn-early-access">Request Early Access</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="vision.html">Vision</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html" class="btn-nav-join">Join the Mission</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="vision.html">Vision</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" class="btn-nav-join">Join the Mission</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Switch theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1Z"/>
+        </svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- Mobile menu -->
@@ -100,11 +122,31 @@
        HERO
   ═══════════════════════════════════════════ -->
   <section id="hero">
-    <div class="hero-content">
-      <img src="pictures/ananke_logo_transparent_upscaled.png" alt="Ananke Seal" class="hero-seal" />
-      <img src="pictures/ananke_intelligence_transparent.png" alt="Ananke Intelligence" class="hero-wordmark" />
-      <p class="hero-tagline">- Intelligence begins with structure -</p>
-      <a href="contact.html" class="btn-gold">Join the Mission</a>
+    <!-- Decorative: the drawing carries no information the copy does not. -->
+    <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="hero-overline">Structured AI Training Data</span>
+        <h1 class="hero-title">Intelligence begins<br />with <em>structure</em>.</h1>
+        <p class="hero-lede">
+          We design reasoning curricula for AI. Small, deliberate problem sets
+          built by mathematicians and shaped around how your model actually learns.
+        </p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn-solid">Join the Mission</a>
+          <a href="#about" class="btn-quiet">Why Ananke</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img src="pictures/ananke_logo_transparent_upscaled.png" alt="The Ananke seal" class="hero-seal" />
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Scroll</span>
+      <i></i>
     </div>
     <div class="hero-gradient-bottom"></div>
   </section>
@@ -131,33 +173,37 @@
   ═══════════════════════════════════════════ -->
   <section id="about">
     <div class="section-inner">
-      <h2 class="section-title">Why Ananke ?</h2>
-      <p class="section-subtitle">The world doesn't need more data. It needs better data</p>
+      <div class="section-head section-head--center">
+        <span class="section-overline">Why Ananke</span>
+        <h2 class="section-title">The world doesn't need<br />more data.</h2>
+        <p class="section-subtitle">It needs better data.</p>
+        <div class="section-rule"></div>
+      </div>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">
-            <img src="pictures/icon_1_transparent.png" alt="Structured Learning" />
+            <img src="pictures/icon_1_transparent.png" alt="" />
           </div>
           <h3>Structured Learning</h3>
           <p>We call our method Didactic Design, inspired by how we train gifted students; we design not just answers, but reasoning.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
-            <img src="pictures/icon_2_transparent.png" alt="Built by Mathematicians" />
+            <img src="pictures/icon_2_transparent.png" alt="" />
           </div>
           <h3>Built by Mathematicians</h3>
           <p>Math PhDs who understand how knowledge is structured and how machines can learn it.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
-            <img src="pictures/icon_3_transparent.png" alt="Multiple Paths" />
+            <img src="pictures/icon_3_transparent.png" alt="" />
           </div>
           <h3>Multiple Paths, One Truth</h3>
           <p>Our datasets revisit problems with varied reasoning. Training AI to think flexibly.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
-            <img src="pictures/icon_4_transparent.png" alt="Safe by Structure" />
+            <img src="pictures/icon_4_transparent.png" alt="" />
           </div>
           <h3>Safe by Structure</h3>
           <p>Alignment starts at the foundation. We build clarity into every token we train.</p>
@@ -172,24 +218,31 @@
   ═══════════════════════════════════════════ -->
   <section id="how-we-build">
     <div class="section-inner">
-      <h2 class="section-title how-title">How We Build<br />Data That Teaches</h2>
+      <div class="section-head section-head--center">
+        <span class="section-overline">The Process</span>
+        <h2 class="section-title how-title">How We Build<br />Data That Teaches</h2>
+        <div class="section-rule"></div>
+      </div>
       <div class="process-list">
         <div class="process-step">
           <div class="process-icon">
-            <img src="pictures/icon_6_transparent.png" alt="Discovery" />
+            <img src="pictures/icon_6_transparent.png" alt="" />
           </div>
+          <span class="process-num">Step One</span>
           <p>We meet with your team to understand your models and goals.</p>
         </div>
         <div class="process-step">
           <div class="process-icon">
-            <img src="pictures/icon_7_clean_transparent.png" alt="Design" />
+            <img src="pictures/icon_7_clean_transparent.png" alt="" />
           </div>
+          <span class="process-num">Step Two</span>
           <p>We design small, powerful problem sets. A curriculum for AI.</p>
         </div>
         <div class="process-step">
           <div class="process-icon">
-            <img src="pictures/icon_8_transparent.png" alt="Iterate" />
+            <img src="pictures/icon_8_transparent.png" alt="" />
           </div>
+          <span class="process-num">Step Three</span>
           <p>We iterate with you for alignment and yield.</p>
         </div>
       </div>
@@ -207,18 +260,19 @@
     <div class="section-inner">
       <div class="who-inner">
         <div class="who-left">
+          <span class="section-overline">Partners</span>
           <h2 class="section-title">Who We Work With</h2>
           <ul class="client-list">
             <li>
-              <div class="client-icon"><img src="pictures/icon_9_transparent.png" alt="AI Labs" /></div>
+              <div class="client-icon"><img src="pictures/icon_9_transparent.png" alt="" /></div>
               <span>AI labs exploring mathematical reasoning</span>
             </li>
             <li>
-              <div class="client-icon"><img src="pictures/icon_10_transparent.png" alt="Startups" /></div>
+              <div class="client-icon"><img src="pictures/icon_10_transparent.png" alt="" /></div>
               <span>Startups needing structured data for fine-tuning.</span>
             </li>
             <li>
-              <div class="client-icon"><img src="pictures/icon_11_transparent.png" alt="Investors" /></div>
+              <div class="client-icon"><img src="pictures/icon_11_transparent.png" alt="" /></div>
               <span>Investors aligned with long-term intelligence infrastructure.</span>
             </li>
           </ul>
@@ -258,6 +312,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>

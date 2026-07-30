@@ -26,7 +26,18 @@
   <meta property="og:title" content="Projects — Ananke Intelligence" />
   <meta property="og:image" content="https://anankeintelligence.com/pictures/ananke_logo_transparent_upscaled.png" />
   <link rel="icon" type="image/png" href="pictures/logo_without_anankeintelligence.jpg" />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <script>
+    /* Applied before the first paint so a returning visitor never sees a
+       flash of the other theme. No stored choice means no attribute, which
+       leaves prefers-color-scheme in the stylesheet in charge. */
+    (function () {
+      try {
+        var t = localStorage.getItem('ananke-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css?v=10" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
@@ -42,16 +53,27 @@
       </a>
     </div>
     <a href="contact.html" class="btn-early-access">Request Early Access</a>
-    <ul class="nav-links">
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="vision.html">Vision</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="projects.html" class="nav-active">Projects</a></li>
-      <li><a href="contact.html" class="btn-nav-join">Join the Mission</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="vision.html">Vision</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="projects.html" class="nav-active">Projects</a></li>
+        <li><a href="contact.html" class="btn-nav-join">Join the Mission</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Switch theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1Z"/>
+        </svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
@@ -172,6 +194,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>
