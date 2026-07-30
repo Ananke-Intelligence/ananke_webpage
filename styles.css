@@ -1691,16 +1691,16 @@ a {
    RESEARCH INDEX — POST CARDS
 ═══════════════════════════════════════════ */
 .research-list { padding: 90px 24px 120px; }
-.research-list-inner { max-width: 1100px; margin: 0 auto; }
+.research-list-inner { max-width: 1040px; margin: 0 auto; }
 
-.research-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 28px;
-}
+/* One post per row. A stacked list reads as a sequence of articles; a grid of
+   tiles reads as a product catalogue. */
+.research-grid { display: flex; flex-direction: column; gap: 30px; }
 
 .research-card {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(0, 44%) minmax(0, 1fr);
+  align-items: center;
   background: var(--bg-2);
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -1714,15 +1714,18 @@ a {
 }
 
 /* The chart is the argument, so it gets room to breathe rather than being
-   cropped to a uniform thumbnail height. */
+   cropped to a uniform thumbnail. */
 .research-card-media {
   background: #0d0d0d;
-  border-bottom: 1px solid var(--border);
-  padding: 18px 18px 10px;
+  border-right: 1px solid var(--border);
+  padding: 22px 20px 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 .research-card-media img { width: 100%; height: auto; display: block; }
 
-.research-card-body { padding: 24px 26px 28px; }
+.research-card-body { padding: 30px 32px; }
 
 .research-card-kicker {
   display: block;
@@ -1846,6 +1849,18 @@ a {
 .post-cite cite { font-style: italic; }
 .post-cite a { color: var(--gold); border-bottom: 1px solid var(--border); }
 .post-cite a:hover { color: var(--gold-lt); }
+
+/* Below this the two columns each get too narrow to be worth having, so the
+   card stacks back to image over text. */
+@media (max-width: 760px) {
+  .research-card { grid-template-columns: 1fr; }
+  .research-card-media {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 18px 18px 10px;
+  }
+  .research-card-body { padding: 24px 24px 28px; }
+}
 
 @media (max-width: 680px) {
   .post { padding: 120px 20px 80px; }
