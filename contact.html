@@ -42,8 +42,8 @@
   <link rel="icon" type="image/png" href="pictures/logo_without_anankeintelligence.jpg" />
   <script>
     /* Applied before the first paint so a returning visitor never sees a
-       flash of the other theme. No stored choice means no attribute, which
-       leaves prefers-color-scheme in the stylesheet in charge. */
+       flash of the other theme. No stored choice means no attribute, and the
+       stylesheet's base tokens are the dark ones — dark is the default. */
     (function () {
       try {
         var t = localStorage.getItem('ananke-theme');
@@ -51,7 +51,7 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=11" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
@@ -253,13 +253,9 @@
         // the site theme afterwards keeps the widget they were served —
         // re-rendering would throw away a checkbox they may already have
         // ticked, which is a worse trade than one mismatched panel.
-        const root = document.documentElement.getAttribute('data-theme');
-        const dark = root
-          ? root === 'dark'
-          : !window.matchMedia('(prefers-color-scheme: light)').matches;
         recaptchaWidgetId = grecaptcha.render('recaptchaContainer', {
           sitekey: RECAPTCHA_SITE_KEY,
-          theme: dark ? 'dark' : 'light',
+          theme: document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark',
         });
       };
       const rc = document.createElement('script');

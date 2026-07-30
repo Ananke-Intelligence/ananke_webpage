@@ -45,6 +45,7 @@
 }
 
 :root[data-theme='light'] {
+  color-scheme: light;
   --bg:         #faf9f7;
   --bg-2:       #f4f2ee;
   --bg-3:       #eae6df;
@@ -68,30 +69,12 @@
   --scheme:     light;
 }
 
-/* No stored preference: follow the operating system. */
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) {
-    --bg:         #faf9f7;
-    --bg-2:       #f4f2ee;
-    --bg-3:       #eae6df;
-    --gold:       #8b6320;
-    --gold-lt:    #6d4c14;
-    --gold-dk:    #b98a2c;
-    --gold-rgb:   139, 99, 32;
-    --gold-flare: #a97518;
-    --text:       #1a1713;
-    --text-rgb:   26, 23, 19;
-    --text-dim:   #5f574a;
-    --border:     rgba(139, 99, 32, 0.24);
-    --border-soft: rgba(0, 0, 0, 0.08);
-    --nav-bg:     rgba(250, 249, 247, 0.94);
-    --card-shadow: 0 10px 30px rgba(90, 70, 30, 0.12);
-    --glow:       0.28;
-    --logo-filter: brightness(0.92) saturate(1.1) contrast(1.06);
-    --icon-filter: brightness(0.5) saturate(1.45) contrast(1.15);
-    --scheme:     light;
-  }
-}
+/* Dark is the default, not a preference. The site is a black-and-gold brand
+   and that is the version people should meet first; light exists for anyone
+   who wants it and is opted into explicitly. So there is deliberately no
+   prefers-color-scheme rule here — no stored choice means the dark tokens
+   above apply, whatever the operating system says.
+   ─────────────────────────────────────────────────────────────────────── */
 
 :root {
   --font-head: 'Cinzel', serif;
@@ -99,7 +82,7 @@
   /* Kept so the ~120 rules written against the old names still resolve. */
   --white: var(--text);
   --gray:  var(--text-dim);
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 
 html {
@@ -362,14 +345,10 @@ a {
 }
 /* One button, two glyphs: show the icon for the mode the click will produce,
    which is the convention people already read on other sites. */
-.theme-toggle .icon-sun  { display: none; }
-.theme-toggle .icon-moon { display: block; }
-:root[data-theme='dark'] .theme-toggle .icon-sun  { display: block; }
-:root[data-theme='dark'] .theme-toggle .icon-moon { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .theme-toggle .icon-sun  { display: block; }
-  :root:not([data-theme]) .theme-toggle .icon-moon { display: none; }
-}
+.theme-toggle .icon-sun  { display: block; }
+.theme-toggle .icon-moon { display: none; }
+:root[data-theme='light'] .theme-toggle .icon-sun  { display: none; }
+:root[data-theme='light'] .theme-toggle .icon-moon { display: block; }
 .nav-links a {
   font-size: 0.82rem;
   letter-spacing: 1px;
@@ -2360,16 +2339,8 @@ textarea:focus-visible {
    the light-mode gold without maintaining a second copy of the file. */
 :root[data-theme='light'] .post-figure img,
 :root[data-theme='light'] .research-card-media img { filter: brightness(.72) saturate(1.3); }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) .post-figure img,
-  :root:not([data-theme]) .research-card-media img { filter: brightness(.72) saturate(1.3); }
-}
 
 /* Ghosted numerals were tuned to sit just above pure black. On cream the same
    opacity disappears entirely. */
 :root[data-theme='light'] .vp-numeral { opacity: .16; }
 :root[data-theme='light'] .vp-adv-num { opacity: .26; }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) .vp-numeral { opacity: .16; }
-  :root:not([data-theme]) .vp-adv-num { opacity: .26; }
-}

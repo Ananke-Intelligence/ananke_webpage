@@ -3,15 +3,14 @@
 //  ───────────────────────────────────────────
 //  The stored choice is applied by a tiny inline script in <head> so the
 //  correct palette is painted on the first frame. This file only handles the
-//  toggling afterwards. With nothing stored we leave data-theme off entirely,
-//  which lets the prefers-color-scheme block in the stylesheet decide.
+//  toggling afterwards. Dark is the default: with nothing stored we leave
+//  data-theme off, and the stylesheet's base tokens are the dark ones. The
+//  operating system's preference is deliberately not consulted.
 // ═══════════════════════════════════════════
 const THEME_KEY = 'ananke-theme';
 
 function currentTheme() {
-  const set = document.documentElement.getAttribute('data-theme');
-  if (set) return set;
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  return document.documentElement.getAttribute('data-theme') || 'dark';
 }
 
 function applyTheme(theme) {
@@ -49,13 +48,6 @@ document.querySelectorAll('.theme-toggle').forEach(btn => {
     btn.setAttribute('aria-pressed', String(theme === 'light'));
   });
 })();
-
-// Follow the OS if it changes and the visitor has never picked a side.
-window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
-  let stored = null;
-  try { stored = localStorage.getItem(THEME_KEY); } catch (e) { /* ignore */ }
-  if (!stored) document.dispatchEvent(new CustomEvent('themechange', { detail: { theme: currentTheme() } }));
-});
 
 // ═══════════════════════════════════════════
 //  MOBILE MENU
