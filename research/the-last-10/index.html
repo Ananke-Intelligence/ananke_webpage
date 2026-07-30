@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Security: restricts where scripts/styles may load from and where data may be sent.
+       GitHub Pages cannot set real HTTP headers, so this is delivered as a meta tag. -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data:;
+    connect-src 'self';
+    frame-src 'none';
+    form-action 'none';
+    base-uri 'self';
+    object-src 'none';
+    upgrade-insecure-requests;" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <title>The Last 10% — Ananke Intelligence</title>
+  <meta name="description" content="You can replace nine-tenths of your training data with machine-generated examples and barely notice. Replace the final tenth and performance falls off a cliff. A digest of Ashok and May, 2025." />
+  <meta name="keywords" content="synthetic data, training data, human annotation, fact verification, question answering, language models, AI research" />
+  <link rel="canonical" href="https://anankeintelligence.com/research/the-last-10/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://anankeintelligence.com/research/the-last-10/" />
+  <meta property="og:title" content="The Last 10% — Ananke Intelligence" />
+  <meta property="og:description" content="You can replace nine-tenths of your training data with machine-generated examples and barely notice. Replace the final tenth and performance falls off a cliff." />
+  <meta property="og:image" content="https://anankeintelligence.com/pictures/ananke_logo_transparent_upscaled.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Last 10% — Ananke Intelligence" />
+  <meta name="twitter:description" content="You can replace nine-tenths of your training data with machine-generated examples and barely notice. Replace the final tenth and performance falls off a cliff." />
+  <meta name="twitter:image" content="https://anankeintelligence.com/pictures/ananke_logo_transparent_upscaled.png" />
+
+  <link rel="icon" type="image/png" href="../../pictures/logo_without_anankeintelligence.jpg" />
+  <link rel="stylesheet" href="../../styles.css?v=8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <a href="../../index.html" class="nav-wordmark">
+        <span class="nav-wordmark-top">ANANKE</span>
+        <span class="nav-wordmark-sub">INTELLIGENCE</span>
+      </a>
+    </div>
+    <a href="../../contact.html" class="btn-early-access">Request Early Access</a>
+    <ul class="nav-links">
+      <li><a href="../../index.html#about">About</a></li>
+      <li><a href="../../vision.html">Vision</a></li>
+      <li><a href="../../research.html">Research</a></li>
+      <li><a href="../../projects.html">Projects</a></li>
+      <li><a href="../../contact.html" class="btn-nav-join">Join the Mission</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../../index.html#about" onclick="closeMobileMenu()">About</a>
+    <a href="../../vision.html" onclick="closeMobileMenu()">Vision &amp; Mission</a>
+    <a href="../../research.html" onclick="closeMobileMenu()">Research</a>
+    <a href="../../projects.html" onclick="closeMobileMenu()">Projects</a>
+    <a href="../../contact.html" onclick="closeMobileMenu()">Join the Mission</a>
+    <a href="../../contact.html" onclick="closeMobileMenu()" class="btn-mobile-access">Request Early Access</a>
+    <a href="https://ananke-platform.bradyalimedi.workers.dev" class="btn-mobile-login">Log In</a>
+  </div>
+
+  <!-- POST -->
+  <article class="post">
+    <div class="post-inner">
+
+      <a href="../../research.html" class="post-back">Research</a>
+
+      <header class="post-header">
+        <span class="vp-overline">Paper digest</span>
+        <h1 class="post-title">The Last 10%</h1>
+        <p class="post-standfirst">
+          You can replace nine-tenths of your training data with machine-generated examples
+          and barely notice. Replace the final tenth and performance falls off a cliff.
+        </p>
+      </header>
+
+      <figure class="post-figure">
+        <img src="../../pictures/the-last-10-chart.svg"
+             alt="A line chart showing model performance staying almost flat as machine-written examples replace human ones up to ninety per cent, then dropping sharply between ninety and one hundred per cent." />
+        <figcaption>Following the shape of Figure 1 in the paper.</figcaption>
+      </figure>
+
+      <div class="post-body">
+
+        <p>To make a model good at something specific, say reading a document and answering
+          questions about it, you train it on examples. An example is a worked case: here is a
+          passage, here is a question about it, here is the correct answer. Show a model a few
+          thousand of those and it gets substantially better at the task.</p>
+
+        <p>Someone has to write each one. That is slow and expensive, so the field asked the
+          obvious question. Could a model write its own?</p>
+
+        <p>Across eight datasets, Dhananjay Ashok and Jonathan May tested how far that goes.
+          The answer is <em>almost</em> all the way, and the shape of that “almost” is strange.</p>
+
+        <h2>The cliff</h2>
+
+        <p>The setup is straightforward. The total number of examples never changes. Only who
+          wrote them does. Start with all human, then replace them with machine-written ones a
+          batch at a time, retraining after each swap.</p>
+
+        <p>For most of the way, almost nothing happens. Replace 90% of the human examples and
+          the model performs about as well as it did on the fully human set.</p>
+
+        <p>The last stretch is where it breaks. Out of 5,000 examples, a model that kept just
+          <strong>125 human-written ones</strong> consistently beat a model that kept none.
+          Losing that final 2.5% did more damage than losing the previous 90%.</p>
+
+        <p>Human data behaves less like flour, where more is simply more, and more like yeast.
+          A loaf is almost entirely flour and water, but leave out the pinch of yeast and it
+          never rises, no matter how much flour you add.</p>
+
+        <p>The effect survived scrutiny. It held across three more languages, models from 1B to
+          30B parameters, and three separate generators: GPT-3.5, GPT-4, and Claude. It also
+          held when the test data came from entirely different datasets, which rules out the
+          models simply learning their annotators’ habits.</p>
+
+        <h2>Diversity doesn’t explain it</h2>
+
+        <p>The usual explanation is that machine-written data is repetitive. The authors
+          checked, and it isn’t.</p>
+
+        <p>On one dataset the synthetic examples contained no duplicates at all, against roughly
+          10% for the humans. More varied, and still worse. Whatever human data supplies,
+          diversity is not a good proxy for it.</p>
+
+        <p>The real difference was subtler. Synthetic questions and answers ran longer and
+          borrowed far more phrasing from the source text, while humans reworded, compressed,
+          and used vocabulary the source never contained. The machine stayed on the page. The
+          people moved off it.</p>
+
+        <h2>What it costs</h2>
+
+        <p>Human examples are better. Machine examples are cheaper. Where do they cross?</p>
+
+        <p>The authors added 200 human examples to a synthetic training set, then asked how much
+          more synthetic data would buy the same improvement. The answer was consistently an
+          order of magnitude or more. On one dataset, those 200 examples were worth around
+          <strong>17,000 machine-written ones</strong>.</p>
+
+        <p>They decline to read the largest estimates literally, and that caution is warranted.
+          But their interpretation is the interesting one. On some tasks,
+          <strong>a little human data may buy performance that no amount of synthetic data
+          reaches.</strong></p>
+
+        <p>This is not a paper claiming synthetic data fails. Purely synthetic models still
+          performed reasonably throughout, and the authors are explicit that the result is
+          task-dependent. They studied fact verification and question answering, not mathematics
+          or code.</p>
+
+        <aside class="post-aside">
+          <p>We build structured mathematical data with human experts, so we have an obvious
+            stake here and you should read us accordingly.</p>
+          <p>What we take from it is not that humans win. It is that the value of human data
+            appears to be <strong>concentrated rather than distributed</strong>. If a few
+            hundred well-made examples can do the work of tens of thousands of generated ones,
+            the question stops being how much data you have. It becomes which examples are
+            worth a person’s time.</p>
+          <p>That is a better question, and a harder one.</p>
+        </aside>
+
+        <p class="post-cite">
+          Dhananjay Ashok and Jonathan May, <cite>A Little Human Data Goes A Long Way</cite>,
+          Information Sciences Institute, University of Southern California. arXiv:2410.13098.
+          <a href="https://arxiv.org/abs/2410.13098" target="_blank" rel="noopener">Read the paper</a>
+        </p>
+
+      </div>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-wordmark">ANANKE INTELLIGENCE</div>
+    <div class="footer-divider"></div>
+    <div class="footer-nav">
+      <a href="../../index.html#about">About</a>
+      <a href="../../vision.html">Vision &amp; Mission</a>
+      <a href="../../research.html">Research</a>
+      <a href="../../projects.html">Projects</a>
+      <a href="../../contact.html">Contact</a>
+      <a href="https://www.linkedin.com/company/ananke-intelligence" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://ananke-platform.bradyalimedi.workers.dev" class="footer-login">Log In</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Ananke Intelligence</span>
+      <span>Ontario, CA</span>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+</body>
+</html>

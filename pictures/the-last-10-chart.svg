@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 400" role="img"
+     aria-labelledby="chartTitle chartDesc">
+  <title id="chartTitle">Model performance against the share of machine-written training examples</title>
+  <desc id="chartDesc">Performance stays almost flat as machine-written examples replace human ones,
+    from zero up to ninety per cent. Between ninety and one hundred per cent it falls sharply.</desc>
+
+  <!-- Gold on transparent, so the chart sits on the page background rather than
+       carrying its own panel. Following the shape of Figure 1 in the paper. -->
+  <defs>
+    <linearGradient id="cliffFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9902a" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#c9902a" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Grid -->
+  <g stroke="#c9902a" stroke-opacity="0.12" stroke-width="1">
+    <line x1="90" y1="90"  x2="770" y2="90" />
+    <line x1="90" y1="162" x2="770" y2="162" />
+    <line x1="90" y1="234" x2="770" y2="234" />
+    <line x1="90" y1="306" x2="770" y2="306" />
+  </g>
+
+  <!-- Axes -->
+  <g stroke="#c9902a" stroke-opacity="0.45" stroke-width="1.5">
+    <line x1="90" y1="60" x2="90" y2="330" />
+    <line x1="90" y1="330" x2="770" y2="330" />
+  </g>
+
+  <!-- Area under the curve, fading out. Purely to give the drop visual weight. -->
+  <path d="M 90 90 L 257 95 L 425 96 L 592 100 L 693 109 L 760 306 L 760 330 L 90 330 Z"
+        fill="url(#cliffFade)" />
+
+  <!-- The curve itself -->
+  <path d="M 90 90 L 257 95 L 425 96 L 592 100 L 693 109 L 760 306"
+        fill="none" stroke="#c9902a" stroke-width="3"
+        stroke-linejoin="round" stroke-linecap="round" />
+
+  <!-- Points -->
+  <g fill="#e0b858">
+    <circle cx="90"  cy="90"  r="4" />
+    <circle cx="257" cy="95"  r="4" />
+    <circle cx="425" cy="96"  r="4" />
+    <circle cx="592" cy="100" r="4" />
+    <circle cx="693" cy="109" r="5" />
+    <circle cx="760" cy="306" r="5.5" />
+  </g>
+
+  <!-- The 90% marker: everything to its left is nearly free -->
+  <line x1="693" y1="109" x2="693" y2="330"
+        stroke="#c9902a" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="4 4" />
+
+  <g font-family="Lato, sans-serif" font-size="14" fill="#999999">
+    <text x="82" y="95"  text-anchor="end">same</text>
+    <text x="82" y="311" text-anchor="end">worse</text>
+
+    <text x="90"  y="356" text-anchor="middle">0%</text>
+    <text x="425" y="356" text-anchor="middle">50%</text>
+    <text x="693" y="356" text-anchor="middle">90%</text>
+    <text x="770" y="356" text-anchor="middle">100%</text>
+  </g>
+
+  <g font-family="Lato, sans-serif" font-size="14.5" fill="#c9902a">
+    <text x="300" y="72" text-anchor="middle">nine-tenths of the way, almost no cost</text>
+    <text x="700" y="250" text-anchor="end">the last tenth</text>
+  </g>
+
+  <text x="430" y="388" text-anchor="middle"
+        font-family="Lato, sans-serif" font-size="14.5" fill="#999999">
+    Share of training examples written by a machine
+  </text>
+
+  <text x="30" y="200" text-anchor="middle" transform="rotate(-90 30 200)"
+        font-family="Lato, sans-serif" font-size="14.5" fill="#999999">
+    Model performance
+  </text>
+</svg>

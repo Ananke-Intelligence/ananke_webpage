@@ -1686,3 +1686,168 @@ a {
     font-size: clamp(1.8rem, 7vw, 2.8rem);
   }
 }
+
+/* ═══════════════════════════════════════════
+   RESEARCH INDEX — POST CARDS
+═══════════════════════════════════════════ */
+.research-list { padding: 90px 24px 120px; }
+.research-list-inner { max-width: 1100px; margin: 0 auto; }
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.research-card {
+  display: block;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+.research-card:hover {
+  border-color: var(--gold-lt);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, .45);
+}
+
+/* The chart is the argument, so it gets room to breathe rather than being
+   cropped to a uniform thumbnail height. */
+.research-card-media {
+  background: #0d0d0d;
+  border-bottom: 1px solid var(--border);
+  padding: 18px 18px 10px;
+}
+.research-card-media img { width: 100%; height: auto; display: block; }
+
+.research-card-body { padding: 24px 26px 28px; }
+
+.research-card-kicker {
+  display: block;
+  font-size: .68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 12px;
+}
+.research-card-title {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.research-card-excerpt {
+  font-size: .93rem;
+  line-height: 1.75;
+  color: var(--white);
+  opacity: .82;
+  margin-bottom: 18px;
+}
+.research-card-more {
+  font-size: .8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.research-card:hover .research-card-more { color: var(--gold-lt); }
+
+.research-list-note {
+  margin-top: 46px;
+  text-align: center;
+  font-size: .88rem;
+  color: var(--gray);
+}
+.research-list-note a { color: var(--gold); border-bottom: 1px solid var(--border); }
+.research-list-note a:hover { color: var(--gold-lt); }
+
+/* ═══════════════════════════════════════════
+   POST PAGE
+═══════════════════════════════════════════ */
+.post { padding: 150px 24px 110px; }
+
+/* Measure caps around 68 characters. Long lines are the quickest way to make
+   a considered piece feel like work to read. */
+.post-inner { max-width: 720px; margin: 0 auto; }
+
+.post-back {
+  display: inline-block;
+  font-size: .72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 34px;
+}
+.post-back::before { content: '← '; }
+.post-back:hover { color: var(--gold); }
+
+.post-header { margin-bottom: 44px; }
+.post-title {
+  font-family: var(--font-head);
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1.15;
+  margin: 14px 0 22px;
+}
+.post-standfirst {
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--white);
+  opacity: .9;
+}
+
+.post-figure { margin: 0 0 48px; }
+.post-figure img { width: 100%; height: auto; display: block; }
+.post-figure figcaption {
+  margin-top: 12px;
+  font-size: .78rem;
+  color: var(--gray);
+  text-align: center;
+}
+
+.post-body { font-size: 1.04rem; line-height: 1.95; }
+.post-body p { margin-bottom: 24px; }
+.post-body strong { color: var(--gold-lt); font-weight: 700; }
+.post-body em { color: var(--white); }
+
+.post-body h2 {
+  font-family: var(--font-head);
+  font-size: 1.42rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin: 54px 0 20px;
+}
+
+/* Closing note in the house voice. A left rule and an indent separate it from
+   the summary above without drawing a line across the page. */
+.post-aside {
+  margin: 52px 0 40px;
+  padding: 4px 0 4px 26px;
+  border-left: 2px solid var(--gold-dk);
+}
+.post-aside p {
+  font-size: .98rem;
+  line-height: 1.85;
+  color: var(--white);
+  opacity: .86;
+  margin-bottom: 18px;
+}
+.post-aside p:last-child { margin-bottom: 0; }
+
+.post-cite {
+  margin-top: 52px;
+  font-size: .82rem;
+  line-height: 1.8;
+  color: var(--gray);
+}
+.post-cite cite { font-style: italic; }
+.post-cite a { color: var(--gold); border-bottom: 1px solid var(--border); }
+.post-cite a:hover { color: var(--gold-lt); }
+
+@media (max-width: 680px) {
+  .post { padding: 120px 20px 80px; }
+  .research-list { padding: 60px 20px 90px; }
+}
