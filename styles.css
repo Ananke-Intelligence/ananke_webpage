@@ -1280,6 +1280,30 @@ a {
   opacity: 0.68;
 }
 
+/* The names carry their own links. An icon under each name would add a second
+   visual element per person, and since the destinations differ in kind -- a
+   LinkedIn profile, a personal site, and nothing at all for the third -- that
+   means two mismatched glyphs and a gap, which draws more attention than the
+   names do. A linked name adds nothing to the layout.
+
+   The underline is faint rather than absent. A link marked by colour alone
+   vanishes for anyone who cannot pick that colour out, and this is already the
+   quietest type on the page; a 25%-opacity rule keeps it findable without
+   making it loud. Gold on hover matches the footer nav above it. */
+.footer-people a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(var(--text-rgb), 0.25);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.footer-people a:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
 /* The separator earns its own element so it can be dropped on narrow screens,
    where the line stacks and a middot between stacked rows reads as debris. */
 .footer-people .sep {
