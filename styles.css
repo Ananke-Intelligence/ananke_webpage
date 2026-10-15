@@ -1257,6 +1257,36 @@ a {
   color: var(--gray);
 }
 
+/* Leadership credit. The company is still in stealth, so this is a signature
+   rather than a team section: no heading, no links, no photographs. It takes
+   the same colour as the copyright line directly above it and sits one step
+   smaller, so it reads as footer furniture — someone looking for a name finds
+   it, someone scanning the page does not stop here.
+   Roles are dimmer than names because the names are the part being disclosed. */
+.footer-people {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  max-width: 640px;
+  margin: 24px auto 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  color: var(--gray);
+}
+
+.footer-people .role {
+  opacity: 0.68;
+}
+
+/* The separator earns its own element so it can be dropped on narrow screens,
+   where the line stacks and a middot between stacked rows reads as debris. */
+.footer-people .sep {
+  opacity: 0.38;
+  margin: 0 0.75em;
+}
+
 /* ═══════════════════════════════════════════
    RESEARCH PAGE
 ═══════════════════════════════════════════ */
@@ -2049,6 +2079,14 @@ a {
     flex-direction: column;
     align-items: center;
     gap: 6px;
+  }
+
+  .footer-people {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .footer-people .sep {
+    display: none;
   }
 
   .contact-page-header,
