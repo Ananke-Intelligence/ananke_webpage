@@ -1257,60 +1257,6 @@ a {
   color: var(--gray);
 }
 
-/* Leadership credit. The company is still in stealth, so this is a signature
-   rather than a team section: no heading, no links, no photographs. It takes
-   the same colour as the copyright line directly above it and sits one step
-   smaller, so it reads as footer furniture — someone looking for a name finds
-   it, someone scanning the page does not stop here.
-   Roles are dimmer than names because the names are the part being disclosed. */
-.footer-people {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
-  max-width: 640px;
-  margin: 24px auto 0;
-  font-size: 0.70rem;
-  letter-spacing: 0.04em;
-  line-height: 1.7;
-  color: var(--gray);
-}
-
-.footer-people .role {
-  opacity: 0.68;
-}
-
-/* The names carry their own links. An icon under each name would add a second
-   visual element per person, and since the destinations differ in kind -- a
-   LinkedIn profile, a personal site, and nothing at all for the third -- that
-   means two mismatched glyphs and a gap, which draws more attention than the
-   names do. A linked name adds nothing to the layout.
-
-   The underline is faint rather than absent. A link marked by colour alone
-   vanishes for anyone who cannot pick that colour out, and this is already the
-   quietest type on the page; a 25%-opacity rule keeps it findable without
-   making it loud. Gold on hover matches the footer nav above it. */
-.footer-people a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  text-decoration-color: rgba(var(--text-rgb), 0.25);
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
-}
-
-.footer-people a:hover {
-  color: var(--gold);
-  text-decoration-color: var(--gold);
-}
-
-/* The separator earns its own element so it can be dropped on narrow screens,
-   where the line stacks and a middot between stacked rows reads as debris. */
-.footer-people .sep {
-  opacity: 0.38;
-  margin: 0 0.75em;
-}
-
 /* ═══════════════════════════════════════════
    RESEARCH PAGE
 ═══════════════════════════════════════════ */
@@ -2103,14 +2049,6 @@ a {
     flex-direction: column;
     align-items: center;
     gap: 6px;
-  }
-
-  .footer-people {
-    flex-direction: column;
-    gap: 2px;
-  }
-  .footer-people .sep {
-    display: none;
   }
 
   .contact-page-header,
